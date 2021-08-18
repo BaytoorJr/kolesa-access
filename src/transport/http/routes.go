@@ -8,7 +8,6 @@ import (
 )
 
 func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerOption) *mux.Router {
-
 	getCarsByMark := kithttp.NewServer(
 		endpoints.GetCarsByMark,
 		getCarsByMarkDecoders,
@@ -37,7 +36,7 @@ func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerO
 	// Get car adds by mark and model
 	// responses:
 	//   200: GetCarsByMarkAndModelResponse
-	router.Path("/parser-api/kolesa/mark_model").
+	router.Path("/parser-api/kolesa/mark&model").
 		Methods("GET").
 		Handler(getCarsByMarkAndModel)
 

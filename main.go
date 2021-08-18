@@ -29,6 +29,7 @@ import (
 func main() {
 	// main ctx
 	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
 
 	// parse flags
 	httpPort := flag.String("http.port", ":8080", "HTTP listen address")
@@ -78,7 +79,7 @@ func main() {
 	carDataHTTPHandler := carDataHTTP.NewHTTPService(carDataEndpoints, serverOptions, logger)
 
 	// add routes, prometheus and health check handlers
-	http.Handle("/carfax-api/v1/cardata/", corsutil.CORS(carDataHTTPHandler))
+	http.Handle("/parser-api/kolesa/", corsutil.CORS(carDataHTTPHandler))
 	http.Handle("/metrics", promhttp.Handler())
 	http.HandleFunc("/check", healthcheckutil.HealthCheck)
 
@@ -98,6 +99,7 @@ func main() {
 	}()
 
 	defer func() {
+		cancel()
 		_ = level.Info(logger).Log("msg", "service ended")
 	}()
 

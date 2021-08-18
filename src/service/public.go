@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"github.com/BaytoorJr/kolesa-access/src/transport"
 )
 
@@ -11,6 +12,8 @@ func (s *service) GetCarsByMark(ctx context.Context, req *transport.GetCarsByMar
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Println(*req)
 
 	return &transport.GetCarsByMarkResponse{
 		Car:           *cars,

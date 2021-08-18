@@ -13,8 +13,7 @@ type CarRepository struct {
 func (c *CarRepository) GetCarsByMark(ctx context.Context, mark string) (*[]domain.Car, error) {
 	var cars []domain.Car
 
-	rows, err := c.store.db.Query(ctx, "SELECT "+
-		"* FROM cars_an2 "+
+	rows, err := c.store.db.Query(ctx, "SELECT * FROM cars_an2 "+
 		"WHERE car_mark = $1", mark)
 	if err != nil {
 		return nil, errors.DBReadError.SetDevMessage(err.Error())
@@ -63,9 +62,8 @@ func (c *CarRepository) GetCarsByMark(ctx context.Context, mark string) (*[]doma
 func (c *CarRepository) GetCarsByMarkAndModel(ctx context.Context, mark, model string) (*[]domain.Car, error) {
 	var cars []domain.Car
 
-	rows, err := c.store.db.Query(ctx, "SELECT "+
-		"* FROM cars_an2 "+
-		"WHERE car_mark = $1, model = $2", mark, model)
+	rows, err := c.store.db.Query(ctx, "SELECT * FROM cars_an2 "+
+		"WHERE car_mark = $1 and car_model = $2", mark, model)
 	if err != nil {
 		return nil, errors.DBReadError.SetDevMessage(err.Error())
 	}
@@ -113,8 +111,7 @@ func (c *CarRepository) GetCarsByMarkAndModel(ctx context.Context, mark, model s
 func (c *CarRepository) GetCarsByYear(ctx context.Context, year int) (*[]domain.Car, error) {
 	var cars []domain.Car
 
-	rows, err := c.store.db.Query(ctx, "SELECT "+
-		"* FROM cars_an2 "+
+	rows, err := c.store.db.Query(ctx, "SELECT * FROM cars_an2 "+
 		"WHERE car_year = $1", year)
 	if err != nil {
 		return nil, errors.DBReadError.SetDevMessage(err.Error())
