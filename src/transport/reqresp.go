@@ -8,8 +8,8 @@ type (
 		Mark string `json:"mark"`
 	}
 	GetCarsByMarkResponse struct {
-		Car           []domain.Car `json:"car"`
-		RequestsCount int          `json:"requests_count"`
+		TotalHits int          `json:"total_hits"`
+		Car       []domain.Car `json:"car"`
 	}
 
 	// GetCarsByMarkAndModelRequest Get car ads by mark and model req & resp
@@ -18,7 +18,43 @@ type (
 		Model string `json:"model"`
 	}
 	GetCarsByMarkAndModelResponse struct {
-		Car           []domain.Car `json:"car"`
-		RequestsCount int          `json:"requests_count"`
+		TotalHits int          `json:"total_hits"`
+		Car       []domain.Car `json:"car"`
+	}
+
+	// GetCarsByYearRequest Get car adds by year req & resp
+	GetCarsByYearRequest struct {
+		Year int `json:"year"`
+	}
+	GetCarsByYearResponse struct {
+		TotalHits int          `json:"total_hits"`
+		Car       []domain.Car `json:"car"`
+	}
+
+	// GetCarsNumRequest Get number of stored car
+	GetCarsNumRequest struct {
+	}
+	GetCarsNumResponse struct {
+		Count int `json:"count"`
+	}
+
+	// GetCarsByAvgPriceRequest Get car adds by  average price in min/max range req & resp
+	GetCarsByAvgPriceRequest struct {
+		Min int `json:"min"`
+		Max int `json:"max"`
+	}
+	GetCarsByAvgPriceResponse struct {
+		TotalHits int          `json:"total_hits"`
+		Car       []domain.Car `json:"car"`
+	}
+
+	// GetCarsByPriceRequest Get car adds by price  in min/max range req & resp
+	GetCarsByPriceRequest struct {
+		Min int `json:"min"`
+		Max int `json:"max"`
+	}
+	GetCarsByPriceResponse struct {
+		TotalHits int          `json:"total_hits"`
+		Car       []domain.Car `json:"car"`
 	}
 )

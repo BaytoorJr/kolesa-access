@@ -46,3 +46,23 @@ func (im *instrumentingMiddleware) GetCarsByMarkAndModel(ctx context.Context, re
 	defer im.instrumenting(time.Now(), "GetCarsByMarkAndModel", err)
 	return im.next.GetCarsByMarkAndModel(ctx, req)
 }
+
+func (im *instrumentingMiddleware) GetCarsByYear(ctx context.Context, req *transport.GetCarsByYearRequest) (_ *transport.GetCarsByYearResponse, err error) {
+	defer im.instrumenting(time.Now(), "GetCarsByYear", err)
+	return im.next.GetCarsByYear(ctx, req)
+}
+
+func (im *instrumentingMiddleware) GetCarsNum(ctx context.Context, req *transport.GetCarsNumRequest) (_ *transport.GetCarsNumResponse, err error) {
+	defer im.instrumenting(time.Now(), "GetCarsNum", err)
+	return im.next.GetCarsNum(ctx, req)
+}
+
+func (im *instrumentingMiddleware) GetCarsByAvgPrice(ctx context.Context, req *transport.GetCarsByAvgPriceRequest) (_ *transport.GetCarsByAvgPriceResponse, err error) {
+	defer im.instrumenting(time.Now(), "GetCarsByAvgPrice", err)
+	return im.next.GetCarsByAvgPrice(ctx, req)
+}
+
+func (im *instrumentingMiddleware) GetCarsByPrice(ctx context.Context, req *transport.GetCarsByPriceRequest) (_ *transport.GetCarsByPriceResponse, err error) {
+	defer im.instrumenting(time.Now(), "GetCarsByPrice", err)
+	return im.next.GetCarsByPrice(ctx, req)
+}

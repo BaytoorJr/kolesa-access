@@ -2,13 +2,12 @@ package constructor
 
 import (
 	"context"
-	"github.com/go-kit/kit/log"
-	kitprometheus "github.com/go-kit/kit/metrics/prometheus"
-	stdprometheus "github.com/prometheus/client_golang/prometheus"
-
 	"github.com/BaytoorJr/kolesa-access/src/middleware"
 	"github.com/BaytoorJr/kolesa-access/src/repository"
 	"github.com/BaytoorJr/kolesa-access/src/service"
+	"github.com/go-kit/kit/log"
+	kitprometheus "github.com/go-kit/kit/metrics/prometheus"
+	stdprometheus "github.com/prometheus/client_golang/prometheus"
 )
 
 // Car data service constructor

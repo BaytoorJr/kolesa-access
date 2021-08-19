@@ -40,3 +40,23 @@ func (lm *loggingMiddleware) GetCarsByMarkAndModel(ctx context.Context, req *tra
 	defer lm.logging(time.Now(), "GetCarsByMarkAndModel", err)
 	return lm.next.GetCarsByMarkAndModel(ctx, req)
 }
+
+func (lm *loggingMiddleware) GetCarsByYear(ctx context.Context, req *transport.GetCarsByYearRequest) (_ *transport.GetCarsByYearResponse, err error) {
+	defer lm.logging(time.Now(), "GetCarsByYear", err)
+	return lm.next.GetCarsByYear(ctx, req)
+}
+
+func (lm *loggingMiddleware) GetCarsNum(ctx context.Context, req *transport.GetCarsNumRequest) (_ *transport.GetCarsNumResponse, err error) {
+	defer lm.logging(time.Now(), "GetCarsNum", err)
+	return lm.next.GetCarsNum(ctx, req)
+}
+
+func (lm *loggingMiddleware) GetCarsByAvgPrice(ctx context.Context, req *transport.GetCarsByAvgPriceRequest) (_ *transport.GetCarsByAvgPriceResponse, err error) {
+	defer lm.logging(time.Now(), "GetCarsByAvgPrice", err)
+	return lm.next.GetCarsByAvgPrice(ctx, req)
+}
+
+func (lm *loggingMiddleware) GetCarsByPrice(ctx context.Context, req *transport.GetCarsByPriceRequest) (_ *transport.GetCarsByPriceResponse, err error) {
+	defer lm.logging(time.Now(), "GetCarsByPrice", err)
+	return lm.next.GetCarsByPrice(ctx, req)
+}
