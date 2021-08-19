@@ -13,7 +13,7 @@ type service struct {
 	context   context.Context
 }
 
-// Service constructor
+// NewService constructor
 func NewService(ctx context.Context, mainStore repository.MainStore, logger log.Logger) CarDataService {
 	return &service{
 		mainStore: mainStore,

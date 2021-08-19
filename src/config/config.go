@@ -8,15 +8,15 @@ import (
 // MainConfig - global config variable
 var MainConfig *Config
 
-// Config constants
+// DefaultChanCapacity Config constants
 const DefaultChanCapacity = 2
 
-// Main config struct
+// Config Main config struct
 type Config struct {
 	PostgreSQLConfig
 }
 
-// Main DB config struct
+// PostgreSQLConfig struct
 type PostgreSQLConfig struct {
 	PostgresHost   string `envconfig:"postgres_host" required:"true"`
 	PostgresPort   string `envconfig:"postgres_port" required:"true"`
@@ -26,7 +26,7 @@ type PostgreSQLConfig struct {
 	PostgresPass   string `envconfig:"postgres_pass" required:"true"`
 }
 
-// Initialize service configuration from ENV
+// InitConfigs Initialize service configuration from ENV
 func InitConfigs() error {
 	var cfg Config
 

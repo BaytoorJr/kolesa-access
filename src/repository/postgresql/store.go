@@ -17,7 +17,7 @@ type Store struct {
 	CarRepository repository.CarRepository
 }
 
-// Store constructor
+// NewStore constructor
 func NewStore(db *pgxpool.Pool, logger log.Logger) (*Store, error) {
 	repo := &Store{
 		db:     db,

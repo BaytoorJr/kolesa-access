@@ -17,7 +17,7 @@ type Endpoints struct {
 	GetCarsByPrice        endpoint.Endpoint
 }
 
-// Endpoints middleware constructor
+// MakeEndpoints middleware constructor
 func MakeEndpoints(s service.CarDataService) *Endpoints {
 	return &Endpoints{
 		GetCarsByMark:         makeGetCarsByMark(s),

@@ -10,7 +10,7 @@ import (
 	stdprometheus "github.com/prometheus/client_golang/prometheus"
 )
 
-// Car data service constructor
+// NewCarDataService constructor
 func NewCarDataService(ctx context.Context, mainRepo repository.MainStore, logger log.Logger) service.CarDataService {
 	svc := service.NewService(ctx, mainRepo, logger)
 	svc = middleware.NewLoggingMiddleware(logger)(svc)

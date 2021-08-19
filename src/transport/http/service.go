@@ -11,7 +11,7 @@ import (
 	"github.com/BaytoorJr/kolesa-access/src/middleware"
 )
 
-// HTTP service constructor
+// NewHTTPService constructor
 func NewHTTPService(svcEndpoints *middleware.Endpoints, options []kithttp.ServerOption, logger log.Logger) http.Handler {
 	errorEncoder := kithttp.ServerErrorEncoder(
 		httpencoders.EncodeErrorResponse,

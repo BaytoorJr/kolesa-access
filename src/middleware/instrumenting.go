@@ -25,7 +25,7 @@ func (im *instrumentingMiddleware) instrumenting(begin time.Time, method string,
 	im.requestLatency.With("method", method).Observe(time.Since(begin).Seconds())
 }
 
-// Instrumenting middleware constructor
+// NewInstrumentingMiddleware constructor
 func NewInstrumentingMiddleware(counter, counterErr metrics.Counter, latency metrics.Histogram) Middleware {
 	return func(next service.CarDataService) service.CarDataService {
 		return &instrumentingMiddleware{

@@ -21,7 +21,7 @@ func (lm *loggingMiddleware) logging(begin time.Time, method string, err error) 
 	_ = lm.logger.Log("method", method, "took", time.Since(begin), "err", err)
 }
 
-// Logging middleware constructor
+// NewLoggingMiddleware constructor
 func NewLoggingMiddleware(logger log.Logger) Middleware {
 	return func(next service.CarDataService) service.CarDataService {
 		return &loggingMiddleware{
