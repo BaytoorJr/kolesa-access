@@ -80,3 +80,14 @@ func (s *service) GetCarsByPrice(ctx context.Context, req *transport.GetCarsByPr
 		Car:       *cars,
 	}, nil
 }
+
+func (s *service) GetAvgPrice(ctx context.Context, req *transport.GetAvgPriceRequest) (*transport.GetAvgPriceResponse, error) {
+	price, err := s.mainStore.Car().GetAvgPrice(ctx, req.Mark, req.Model, req.Year)
+	if err != nil {
+		return nil, err
+	}
+
+	return &transport.GetAvgPriceResponse{
+		AveragePrice: price,
+	}, nil
+}

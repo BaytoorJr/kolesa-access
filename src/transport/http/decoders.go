@@ -59,7 +59,7 @@ func getCarsByYearDecoders(_ context.Context, r *http.Request) (interface{}, err
 	return request, nil
 }
 
-func getCarsNumDecoders(_ context.Context, r *http.Request) (interface{}, error) {
+func getCarsNumDecoders(_ context.Context, _ *http.Request) (interface{}, error) {
 	return transport.GetCarsNumRequest{}, nil
 }
 
@@ -82,6 +82,23 @@ func getCarsByAvgPriceDecoders(_ context.Context, r *http.Request) (interface{},
 
 func getCarsByPriceDecoders(_ context.Context, r *http.Request) (interface{}, error) {
 	var req transport.GetCarsByPriceRequest
+
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		errors.InvalidCharacter.DeveloperMessage = err.Error()
+		return nil, errors.InvalidCharacter
+	}
+
+	err = req.Validate()
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+func getAvgPriceDecoders(_ context.Context, r *http.Request) (interface{}, error) {
+	var req transport.GetAvgPriceRequest
 
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {

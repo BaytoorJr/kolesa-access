@@ -15,6 +15,7 @@ type Endpoints struct {
 	GetCarsNum            endpoint.Endpoint
 	GetCarsByAvgPrice     endpoint.Endpoint
 	GetCarsByPrice        endpoint.Endpoint
+	GetAvgPrice           endpoint.Endpoint
 }
 
 // MakeEndpoints middleware constructor
@@ -26,6 +27,7 @@ func MakeEndpoints(s service.CarDataService) *Endpoints {
 		GetCarsNum:            makeGetCarsNum(s),
 		GetCarsByAvgPrice:     makerGetCarsByAvgNum(s),
 		GetCarsByPrice:        makerGetCarsByNum(s),
+		GetAvgPrice:           makeGetAvgPrice(s),
 	}
 }
 
@@ -74,5 +76,13 @@ func makerGetCarsByNum(s service.CarDataService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(transport.GetCarsByPriceRequest)
 		return s.GetCarsByPrice(ctx, &req)
+	}
+}
+
+// Get Average price by mark, model, year
+func makeGetAvgPrice(s service.CarDataService) endpoint.Endpoint {
+	return func(ctx context.Context, request interface{}) (interface{}, error) {
+		req := request.(transport.GetAvgPriceRequest)
+		return s.GetAvgPrice(ctx, &req)
 	}
 }

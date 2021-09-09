@@ -46,3 +46,21 @@ func (r *GetCarsByPriceRequest) Validate() error {
 
 	return nil
 }
+
+func (r *GetAvgPriceRequest) Validate() error {
+	err := validators.StringNonEmptyValidate("mark", r.Mark)
+	if err != nil {
+		return errors.IncorrectRequest.SetDevMessage("mark not set")
+	}
+
+	err = validators.StringNonEmptyValidate("model", r.Model)
+	if err != nil {
+		return errors.IncorrectRequest.SetDevMessage("model not set")
+	}
+
+	if r.Year == 0 || r.Year > time.Now().Year() {
+		return errors.IncorrectRequest.SetDevMessage("incorrect year")
+	}
+
+	return nil
+}

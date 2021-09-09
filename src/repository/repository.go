@@ -12,4 +12,5 @@ type CarRepository interface {
 	GetRowsNum(ctx context.Context) (int, error)
 	GetCarsByAvgPrice(ctx context.Context, min, max int) (*[]domain.Car, error)
 	GetCarsByPrice(ctx context.Context, min, max int) (*[]domain.Car, error)
+	GetAvgPrice(ctx context.Context, mark, model string, year int) (int, error)
 }

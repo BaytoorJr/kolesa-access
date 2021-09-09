@@ -76,6 +76,7 @@ func main() {
 		kithttp.ServerErrorHandler(kittransport.NewLogErrorHandler(logger)),
 		kithttp.ServerErrorEncoder(httpencoders.EncodeErrorResponse),
 	}
+
 	carDataHTTPHandler := carDataHTTP.NewHTTPService(carDataEndpoints, serverOptions, logger)
 
 	// add routes, prometheus and health check handlers

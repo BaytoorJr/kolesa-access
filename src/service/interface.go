@@ -12,4 +12,5 @@ type CarDataService interface {
 	GetCarsNum(ctx context.Context, _ *transport.GetCarsNumRequest) (*transport.GetCarsNumResponse, error)
 	GetCarsByAvgPrice(ctx context.Context, req *transport.GetCarsByAvgPriceRequest) (*transport.GetCarsByAvgPriceResponse, error)
 	GetCarsByPrice(ctx context.Context, req *transport.GetCarsByPriceRequest) (*transport.GetCarsByPriceResponse, error)
+	GetAvgPrice(ctx context.Context, req *transport.GetAvgPriceRequest) (*transport.GetAvgPriceResponse, error)
 }

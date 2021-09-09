@@ -60,3 +60,8 @@ func (lm *loggingMiddleware) GetCarsByPrice(ctx context.Context, req *transport.
 	defer lm.logging(time.Now(), "GetCarsByPrice", err)
 	return lm.next.GetCarsByPrice(ctx, req)
 }
+
+func (lm *loggingMiddleware) GetAvgPrice(ctx context.Context, req *transport.GetAvgPriceRequest) (_ *transport.GetAvgPriceResponse, err error) {
+	defer lm.logging(time.Now(), "GetAveragePrice", err)
+	return lm.next.GetAvgPrice(ctx, req)
+}

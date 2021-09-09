@@ -57,4 +57,14 @@ type (
 		TotalHits int          `json:"total_hits"`
 		Car       []domain.Car `json:"car"`
 	}
+
+	// GetAvgPriceRequest Get average price by mark, model, year
+	GetAvgPriceRequest struct {
+		Mark  string `json:"mark"`
+		Model string `json:"model"`
+		Year  int    `json:"year"`
+	}
+	GetAvgPriceResponse struct {
+		AveragePrice int `json:"average_price"`
+	}
 )

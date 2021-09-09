@@ -66,3 +66,8 @@ func (im *instrumentingMiddleware) GetCarsByPrice(ctx context.Context, req *tran
 	defer im.instrumenting(time.Now(), "GetCarsByPrice", err)
 	return im.next.GetCarsByPrice(ctx, req)
 }
+
+func (im *instrumentingMiddleware) GetAvgPrice(ctx context.Context, req *transport.GetAvgPriceRequest) (_ *transport.GetAvgPriceResponse, err error) {
+	defer im.instrumenting(time.Now(), "GetAveragePrice", err)
+	return im.next.GetAvgPrice(ctx, req)
+}

@@ -50,13 +50,20 @@ func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerO
 		options...,
 	)
 
+	getAvgPrice := kithttp.NewServer(
+		endpoints.GetAvgPrice,
+		getAvgPriceDecoders,
+		encoders.EncodeResponse,
+		options...,
+	)
+
 	router := mux.NewRouter()
 
 	// swagger:route GET /parser-api/kolesa/mark Cars GetCarsByMarkRequest
 	// Get car adds by mark
 	// responses:
 	//   200: GetCarsByMarkResponse
-	router.Path("/parser-api/kolesa/mark").
+	router.Path("/parser-api/kolesa/car/mark").
 		Methods("GET").
 		Handler(getCarsByMark)
 
@@ -64,7 +71,7 @@ func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerO
 	// Get car adds by mark and model
 	// responses:
 	//   200: GetCarsByMarkAndModelResponse
-	router.Path("/parser-api/kolesa/mark&model").
+	router.Path("/parser-api/kolesa/car/mark&model").
 		Methods("GET").
 		Handler(getCarsByMarkAndModel)
 
@@ -72,7 +79,7 @@ func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerO
 	// Get car adds by year
 	// responses:
 	//   200: GetCarsByYearResponse
-	router.Path("/parser-api/kolesa/year").
+	router.Path("/parser-api/kolesa/car/year").
 		Methods("GET").
 		Handler(getCarsByYear)
 
@@ -80,7 +87,7 @@ func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerO
 	// Get car adds count
 	// responses:
 	//   200: GetCarsNumResponse
-	router.Path("/parser-api/kolesa/count").
+	router.Path("/parser-api/kolesa/car/count").
 		Methods("GET").
 		Handler(getCarsNum)
 
@@ -88,7 +95,7 @@ func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerO
 	// Get car adds by average price in range min and max
 	// responses:
 	//   200: GetCarsByAvgPriceResponse
-	router.Path("/parser-api/kolesa/average_price").
+	router.Path("/parser-api/kolesa/car/average_price").
 		Methods("GET").
 		Handler(getCarsByAvgPrice)
 
@@ -96,9 +103,17 @@ func initializeRoutes(endpoints *middleware.Endpoints, options []kithttp.ServerO
 	// Get car adds by price in range min and max
 	// responses:
 	//   200: GetCarsByPriceResponse
-	router.Path("/parser-api/kolesa/price").
+	router.Path("/parser-api/kolesa/car/price").
 		Methods("GET").
 		Handler(getCarsByPrice)
+
+	// swagger:route GET /parser-api/kolesa/average_price Price GetAvgPriceRequest
+	// Get average price by mark, model, year
+	// responses:
+	// 200: GetAvgPriceResponse
+	router.Path("/parser-api/kolesa/average_price").
+		Methods("GET").
+		Handler(getAvgPrice)
 
 	return router
 }

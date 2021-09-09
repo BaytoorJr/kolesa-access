@@ -263,5 +263,15 @@ func (c *CarRepository) GetCarsByPrice(ctx context.Context, min, max int) (*[]do
 	}
 
 	return &cars, nil
+}
 
+func (c *CarRepository) GetAvgPrice(ctx context.Context, mark, model string, year int) (int, error) {
+	var price int
+
+	err := c.store.db.QueryRow(ctx, "SELECT average_price FROM cars_an2 WHERE car_mark = $1 and car_model = $2 and car_year = $3 order by created_at desc", mark, model, year).Scan(&price)
+	if err != nil {
+		return 0, err
+	}
+
+	return price, nil
 }
